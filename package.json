@@ -22,5 +22,8 @@
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "globals": "^15.9.0"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10"
   }
 }
