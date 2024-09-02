@@ -35,9 +35,7 @@ const gameEven = () => {
         }
         result = `Congratulation: ${getname}`;
     }
-    // result = `Congratulation: ${getname}`;
     return result;
 };
-console.log(gameEven());
 
 export default gameEven;
