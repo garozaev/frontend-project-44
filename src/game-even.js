@@ -13,10 +13,6 @@ const gameEven = () => {
         const questRound = gameQuestion();
         const answerCheck = questRound % 2 === 0 ? 'yes' : 'no';
         result = gameEngine(userName, gameСond, questRound, answerCheck, count, countMax, result);
-        if (result !== 'Correct!') {
-            i = 3;
-            return result;
-        }
     }
     return result;
 };

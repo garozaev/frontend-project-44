@@ -2,6 +2,9 @@ import readlineSync from 'readline-sync';
 
 const gameEngine = (user, cond, question, check, count, countFinish, result) => {
     let gameAnswer;
+    if (result !== 'Correct!' && result !== 'Start!') {
+        return result;
+    }
     if (result === 'Start!') {
         readlineSync.question(`Hello, ${user}!`);
         readlineSync.question(`${cond}`);
