@@ -28,18 +28,17 @@ const gameCalc = () => {
     const userName = readlineSync.question('Welcome to the Brain Games!\nMay I have your name? ');
     const gameСond = 'What is the result of the expression?';
     const countMax = 3;
-    let result = 'Start!';
-    for (let i = 0; i < 3; i += 1) {
-        const count = i;
+    let result;
+    for (let i = 0; i < countMax; i += 1) {
+        const gemeRound = i;
         const num1 = randomeNuber();
         const num2 = randomeNuber();
         const operation = getSing();
         const questRound = `${num1} ${operation} ${num2}`;
         const answerCheck = (calc(num1, operation, num2)).toString();
-        result = gameEngine(userName, gameСond, questRound, answerCheck, count, countMax, result);
+        result = gameEngine(userName, gameСond, gemeRound, questRound, answerCheck, countMax);
         if (result !== 'Correct!') {
             i = countMax;
-            return result;
         }
     }
     return result;

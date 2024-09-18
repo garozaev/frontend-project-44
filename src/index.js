@@ -1,37 +1,34 @@
 import readlineSync from 'readline-sync';
 
-const gameEngine = (user, cond, question, check, count, countFinish, result) => {
+const gameEngine = (user, cond, round, question, check, countFinish) => {
     let gameAnswer;
-    if (result !== 'Correct!' && result !== 'Start!') {
-        return result;
-    }
-    if (result === 'Start!') {
+    if (round === 0) {
         readlineSync.question(`Hello, ${user}!`);
         readlineSync.question(`${cond}`);
         readlineSync.question(`Question: ${question} `);
         const playerAnswer = readlineSync.question('Yuor answer: ');
-        const answer = check === playerAnswer ? 'Correct!' : `${playerAnswer} is wrong answer ;(. Correct answer was ${check}.\nLet's try again, ${user} `;
-        readlineSync.question(`${answer} `);
-        gameAnswer = answer;
+        gameAnswer = check === playerAnswer ? 'Correct!' : `${playerAnswer} is wrong answer ;(. Correct answer was ${check}.\nLet's try again, ${user} `;
+        if (gameAnswer === 'Correct!') {
+            readlineSync.question(`${gameAnswer} `);
+        }
     }
-    // const userName = getName;
-    if (result === 'Correct!' && count < countFinish - 1) {
+    if (round < countFinish - 1 && round !== 0) {
         readlineSync.question(`Question: ${question} `);
         const playerAnswer = readlineSync.question('Yuor answer: ');
-        const answer = check === playerAnswer ? 'Correct!' : `${playerAnswer} is wrong answer ;(. Correct answer was ${check}.\nLet's try again, ${user} `;
-        readlineSync.question(`${answer} `);
-        gameAnswer = answer;
+        gameAnswer = check === playerAnswer ? 'Correct!' : `${playerAnswer} is wrong answer ;(. Correct answer was ${check}.\nLet's try again, ${user} `;
+        if (gameAnswer === 'Correct!') {
+            readlineSync.question(`${gameAnswer} `);
+        }
     }
-    if (result === 'Correct!' && count === countFinish - 1) {
+    if (round === countFinish - 1) {
         readlineSync.question(`Question: ${question} `);
         const playerAnswer = readlineSync.question('Yuor answer: ');
-        const answer = check === playerAnswer ? 'Correct!' : `${playerAnswer} is wrong answer ;(. Correct answer was ${check}.\nLet's try again, ${user} `;
-        readlineSync.question(`${answer} `);
-        gameAnswer = `Congratulation: ${user} `;
+        gameAnswer = check === playerAnswer ? 'Correct!' : `${playerAnswer} is wrong answer ;(. Correct answer was ${check}.\nLet's try again, ${user} `;
+        if (gameAnswer === 'Correct!') {
+            gameAnswer = `Correct!\nCongratulation: ${user} `;
+        }
     }
     return gameAnswer;
 };
 
 export default gameEngine;
-
-// count <= 2 && count !== 0
