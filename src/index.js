@@ -1,34 +1,34 @@
 import readlineSync from 'readline-sync';
 
-const gameEngine = (user, cond, round, question, check, countFinish) => {
-    let gameAnswer;
+const gameEngine = (user, condition, round, question, check, finish) => {
+    let answer;
     if (round === 0) {
         readlineSync.question(`Hello, ${user}!`);
-        readlineSync.question(`${cond}`);
+        readlineSync.question(`${condition}`);
         readlineSync.question(`Question: ${question} `);
         const playerAnswer = readlineSync.question('Yuor answer: ');
-        gameAnswer = check === playerAnswer ? 'Correct!' : `${playerAnswer} is wrong answer ;(. Correct answer was ${check}.\nLet's try again, ${user} `;
-        if (gameAnswer === 'Correct!') {
-            readlineSync.question(`${gameAnswer} `);
+        answer = check === playerAnswer ? 'Correct!' : `${playerAnswer} is wrong answer ;(. Correct answer was ${check}.\nLet's try again, ${user} `;
+        if (answer === 'Correct!') {
+            readlineSync.question(`${answer} `);
         }
     }
-    if (round < countFinish - 1 && round !== 0) {
+    if (round < finish - 1 && round !== 0) {
         readlineSync.question(`Question: ${question} `);
         const playerAnswer = readlineSync.question('Yuor answer: ');
-        gameAnswer = check === playerAnswer ? 'Correct!' : `${playerAnswer} is wrong answer ;(. Correct answer was ${check}.\nLet's try again, ${user} `;
-        if (gameAnswer === 'Correct!') {
-            readlineSync.question(`${gameAnswer} `);
+        answer = check === playerAnswer ? 'Correct!' : `${playerAnswer} is wrong answer ;(. Correct answer was ${check}.\nLet's try again, ${user} `;
+        if (answer === 'Correct!') {
+            readlineSync.question(`${answer} `);
         }
     }
-    if (round === countFinish - 1) {
+    if (round === finish - 1) {
         readlineSync.question(`Question: ${question} `);
         const playerAnswer = readlineSync.question('Yuor answer: ');
-        gameAnswer = check === playerAnswer ? 'Correct!' : `${playerAnswer} is wrong answer ;(. Correct answer was ${check}.\nLet's try again, ${user} `;
-        if (gameAnswer === 'Correct!') {
-            gameAnswer = `Correct!\nCongratulation: ${user} `;
+        answer = check === playerAnswer ? 'Correct!' : `${playerAnswer} is wrong answer ;(. Correct answer was ${check}.\nLet's try again, ${user} `;
+        if (answer === 'Correct!') {
+            answer = `Correct!\nCongratulation: ${user} `;
         }
     }
-    return gameAnswer;
+    return answer;
 };
 
 export default gameEngine;
