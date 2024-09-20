@@ -1,7 +1,12 @@
 import readlineSync from 'readline-sync';
 import gameEngine from '../src/index.js';
 
-const randomeNuber = () => Math.floor(Math.random() * 20);
+const randomeNuber = () => {
+    const min = 1;
+    const max = 20;
+    const random = Math.random() * (max - min + 1) + 1;
+    return Math.floor(random);
+};
 
 const getDCG = (number1, number2) => {
     let x = number1;

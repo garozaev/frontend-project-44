@@ -1,10 +1,16 @@
 import readlineSync from 'readline-sync';
 import gameEngine from '../src/index.js';
 
-const randomeNuber = () => Math.floor(Math.random() * 20);
+const randomeNuber = () => {
+    const min = 1;
+    const max = 20;
+    const random = Math.random() * (max - min + 1) + 1;
+    return Math.floor(random);
+};
 
 const getSing = () => {
-    const index = Math.floor(Math.random() * 3);
+    const max = 3;
+    const index = Math.floor(Math.random() * max);
     const singsAr = ['-', '+', '*'];
     const sing = singsAr.at(index);
     return sing;

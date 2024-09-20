@@ -1,7 +1,12 @@
 import readlineSync from 'readline-sync';
 import gameEngine from '../src/index.js';
 
-const gameQuestion = () => Math.floor(Math.random() * 20);
+const gameQuestion = () => {
+    const min = 1;
+    const max = 20;
+    const random = Math.random() * (max - min + 1) + 1;
+    return Math.floor(random);
+};
 
 const gameEven = () => {
     const userName = readlineSync.question('Welcome to the Brain Games!\nMay I have your name? ');
