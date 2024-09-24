@@ -9,42 +9,26 @@ const randomNumber = () => {
 };
 
 const progressionRow = (difference) => {
-    const maxN = 10;
-    const rowStart = Math.floor(Math.random() * 100);
-    let number = rowStart;
-    const progressionNumbers = [];
-    for (let i = 0; i < maxN; i += 1) {
-        number += difference;
-        progressionNumbers.push(number);
-    }
-    return progressionNumbers;
-};
-
-const getlostNum = (numbers) => {
-    const array = numbers;
-    const indexGetlost = Math.floor(Math.random() * (array.length));
-    const secretRow = [];
-    for (let i = 0; i < array.length; i += 1) {
+    const rowLength = 10;
+    const numberStart = Math.floor(Math.random() * 100);
+    const indexGetlost = Math.floor(Math.random() * (rowLength));
+    let number = numberStart;
+    let getlostNumber;
+    const Numbers = [];
+    const result = [];
+    for (let i = 0; i < rowLength; i += 1) {
         if (i === indexGetlost) {
-            array[i] = '..';
-            secretRow.push(array[i]);
+            getlostNumber = number + difference;
+            number = '..';
+            Numbers.push(number);
+            number = getlostNumber;
         } else {
-            secretRow.push(array[i]);
+            number += difference;
+            Numbers.push(number);
         }
     }
-    return secretRow;
-};
-
-const lookForNamber = (array, difference) => {
-    let result;
-    for (let i = 0; i < array.length; i += 1) {
-        if (array[i] === '..' && i !== array.length - 1) {
-            result = array[i + 1] - difference;
-        }
-        if (array[i] === '..' && i === array.length - 1) {
-            result = array[i - 1] + difference;
-        }
-    }
+    result.push(Numbers);
+    result.push(getlostNumber);
     return result;
 };
 
@@ -57,9 +41,9 @@ const gameProgression = () => {
         const gemeRound = i;
         const step = randomNumber();
         const roundNambers = progressionRow(step);
-        const roundGetlostNumber = getlostNum(roundNambers);
+        const roundGetlostNumber = roundNambers[0];
         const questRound = `${roundGetlostNumber}`;
-        const answerCheck = (lookForNamber(roundGetlostNumber, step)).toString();
+        const answerCheck = roundNambers[1].toString();
         result = gameEngine(userName, gameСond, gemeRound, questRound, answerCheck, countMax);
         if (result !== 'Correct!') {
             i = countMax;
