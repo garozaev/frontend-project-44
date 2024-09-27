@@ -1,7 +1,7 @@
 import readlineSync from 'readline-sync';
 import gameEngine from '../src/index.js';
 
-const randomeNuber = () => {
+const randomeNumber = () => {
     const min = 1;
     const max = 20;
     const random = Math.random() * (max - min + 1) + 1;
@@ -34,8 +34,8 @@ const gameGcd = () => {
     let result;
     for (let i = 0; i < countMax; i += 1) {
         const gemeRound = i;
-        const num1 = randomeNuber();
-        const num2 = randomeNuber();
+        const num1 = randomeNumber();
+        const num2 = randomeNumber();
         const questRound = `${num1} ${num2}`;
         const answerCheck = (getDCG(num1, num2)).toString();
         result = gameEngine(userName, gameСond, gemeRound, questRound, answerCheck, countMax);
