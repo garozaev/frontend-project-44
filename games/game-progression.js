@@ -41,7 +41,7 @@ const gameProgression = () => {
         const gemeRound = i;
         const step = randomNumber();
         const roundNambers = progressionRow(step);
-        const roundGetlostNumber = roundNambers[0];
+        const roundGetlostNumber = roundNambers[0].toString();
         const questRound = `${roundGetlostNumber}`;
         const answerCheck = roundNambers[1].toString();
         result = gameEngine(userName, gameСond, gemeRound, questRound, answerCheck, countMax);
