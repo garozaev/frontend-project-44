@@ -25,7 +25,7 @@ const gameEngine = (user, condition, round, question, check, finish) => {
         const playerAnswer = readlineSync.question('Yuor answer: ');
         answer = check === playerAnswer ? 'Correct!' : `'${playerAnswer}' is wrong answer ;(. Correct answer was '${check}'.\nLet's try again, ${user} `;
         if (answer === 'Correct!') {
-            answer = `Correct!\nCongratulations, ${user} `;
+            answer = `Correct!\nCongratulations, ${user}!`;
         }
     }
     return answer;
