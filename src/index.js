@@ -7,7 +7,7 @@ const gameEngine = (user, condition, round, question, check, finish) => {
         console.log(`${condition}`);
         console.log(`Question: ${question}`);
         const playerAnswer = readlineSync.question('Yuor answer: ');
-        answer = check === playerAnswer ? 'Correct!' : `'${playerAnswer}' is wrong answer ;(. Correct answer was '${check}'.\nLet's try again, ${user} `;
+        answer = check === playerAnswer ? 'Correct!' : `'${playerAnswer}' is wrong answer ;(. Correct answer was '${check}'.\nLet's try again, ${user}!`;
         if (answer === 'Correct!') {
             console.log(`${answer} `);
         }
@@ -15,7 +15,7 @@ const gameEngine = (user, condition, round, question, check, finish) => {
     if (round < finish - 1 && round !== 0) {
         console.log(`Question: ${question}`);
         const playerAnswer = readlineSync.question('Yuor answer: ');
-        answer = check === playerAnswer ? 'Correct!' : `'${playerAnswer}' is wrong answer ;(. Correct answer was '${check}'.\nLet's try again, ${user} `;
+        answer = check === playerAnswer ? 'Correct!' : `'${playerAnswer}' is wrong answer ;(. Correct answer was '${check}'.\nLet's try again, ${user}!`;
         if (answer === 'Correct!') {
             console.log(`${answer} `);
         }
