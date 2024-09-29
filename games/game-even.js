@@ -10,7 +10,7 @@ const gameQuestion = () => {
 
 const gameEven = () => {
     const userName = readlineSync.question('Welcome to the Brain Games!\nMay I have your name? ');
-    const gameСond = 'Ansver "yes" if the number is even, otherwise ansver "no".';
+    const gameСond = 'Answer "yes" if the number is even, otherwise answer "no".';
     const countMax = 3;
     let result;
     for (let i = 0; i < countMax; i += 1) {
