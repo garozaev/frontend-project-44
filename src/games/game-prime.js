@@ -1,7 +1,7 @@
 import runGame from '../index.js';
 import { getRandomeNumber, showFile } from '../utils.js';
 
-const isRuleOfGame = 'Answer \'yes\' if given number is prime. Otherwise answer \'no\'.';
+const isRuleOfGame = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (number) => {
   let result;

@@ -1,7 +1,7 @@
 import runGame from '../index.js';
 import { getRandomeNumber, showFile } from '../utils.js';
 
-const isRuleOfGame = 'Answer \'yes\' if the number is even, otherwise answer \'no\'.';
+const isRuleOfGame = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 const isStartNumder = 1;
 const isFinishNumder = 20;
