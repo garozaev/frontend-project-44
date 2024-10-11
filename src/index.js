@@ -11,7 +11,7 @@ const runGame = (rule, question, expected) => {
     if (i < isMaxRound - 1) {
       const isQuestionRound = question();
       const expectedRound = expected();
-      showFile(isQuestionRound);
+      showFile(`Question: ${isQuestionRound}`);
       const isPlayerAnswer = getFile();
       result = checkAnswer(expectedRound, isPlayerAnswer, isUserName);
       if (result === 'Correct!') {
@@ -24,7 +24,7 @@ const runGame = (rule, question, expected) => {
     } else {
       const isQuestionRound = question();
       const expectedRound = expected();
-      showFile(isQuestionRound);
+      showFile(`Question: ${isQuestionRound}`);
       const isPlayerAnswer = getFile();
       result = checkAnswer(expectedRound, isPlayerAnswer, isUserName);
       if (result === 'Correct!') {
