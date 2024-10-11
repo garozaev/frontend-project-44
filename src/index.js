@@ -1,34 +1,43 @@
-import readlineSync from 'readline-sync';
+import {
+  converWithUser, showFile, getFile, checkAnswer,
+} from './utils.js';
 
-const gameEngine = (user, condition, round, question, check, finish) => {
-  let answer;
-  if (round === 0) {
-    console.log(`Hello, ${user}!`);
-    console.log(`${condition}`);
-    console.log(`Question: ${question}`);
-    const playerAnswer = readlineSync.question('Yuor answer: ');
-    answer = check === playerAnswer ? 'Correct!' : `'${playerAnswer}' is wrong answer ;(. Correct answer was '${check}'.\nLet's try again, ${user}!`;
-    if (answer === 'Correct!') {
-      console.log(`${answer} `);
+const runGame = (rule, question, expected) => {
+  const isUserName = converWithUser();
+  showFile(rule);
+  const isMaxRound = 3;
+  let result;
+  for (let i = 0; i < isMaxRound; i += 1) {
+    if (i < isMaxRound - 1) {
+      const isQuestionRound = question();
+      const expectedRound = expected();
+      showFile(isQuestionRound);
+      const isPlayerAnswer = getFile();
+      result = checkAnswer(expectedRound, isPlayerAnswer, isUserName);
+      if (result === 'Correct!') {
+        showFile(result);
+      }
+      if (result !== 'Correct!') {
+        i = isMaxRound;
+        return result;
+      }
+    } else {
+      const isQuestionRound = question();
+      const expectedRound = expected();
+      showFile(isQuestionRound);
+      const isPlayerAnswer = getFile();
+      result = checkAnswer(expectedRound, isPlayerAnswer, isUserName);
+      if (result === 'Correct!') {
+        showFile(result);
+      }
+      if (result !== 'Correct!') {
+        i = isMaxRound;
+        return result;
+      }
     }
   }
-  if (round < finish - 1 && round !== 0) {
-    console.log(`Question: ${question}`);
-    const playerAnswer = readlineSync.question('Yuor answer: ');
-    answer = check === playerAnswer ? 'Correct!' : `'${playerAnswer}' is wrong answer ;(. Correct answer was '${check}'.\nLet's try again, ${user}!`;
-    if (answer === 'Correct!') {
-      console.log(`${answer} `);
-    }
-  }
-  if (round === finish - 1) {
-    console.log(`Question: ${question} `);
-    const playerAnswer = readlineSync.question('Yuor answer: ');
-    answer = check === playerAnswer ? 'Correct!' : `'${playerAnswer}' is wrong answer ;(. Correct answer was '${check}'.\nLet's try again, ${user}!`;
-    if (answer === 'Correct!') {
-      answer = `Correct!\nCongratulations, ${user}!`;
-    }
-  }
-  return answer;
+  result = `Congratulations, ${isUserName}!`;
+  return result;
 };
 
-export default gameEngine;
+export default runGame;
