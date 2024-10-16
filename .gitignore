@@ -1,9 +1,5 @@
 node_modules/
-game-progression-2.js
-brain-calc.cast
-brain-even.cast
 brain-games.cast
-brain-gcd.cast
-brain-prime.cast
-brain-progression.cast
 draft-file.js 
+draft-file-2.js
+.vscode/

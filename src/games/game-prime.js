@@ -1,7 +1,12 @@
 import runGame from '../index.js';
-import { getRandomeNumber, showFile } from '../utils.js';
-
-const isRuleOfGame = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+import {
+  conversationWithUser,
+  generateRandomeNumber,
+  showValueInConsole,
+  getAnswer,
+  checkAnswer,
+  getRoundAnswer,
+} from '../utils.js';
 
 const isPrime = (number) => {
   let result;
@@ -20,21 +25,34 @@ const isPrime = (number) => {
   return result;
 };
 
-const isStartNumder = 1;
-const isFinishNumder = 20;
-let isNamber;
-const getQuestion = () => {
-  isNamber = getRandomeNumber(isStartNumder, isFinishNumder);
-  return isNamber;
-};
-const expectedAnswer = () => {
-  const result = isPrime(isNamber) ? 'yes' : 'no';
+const getAnswerPrimeOrNo = (number) => {
+  const result = isPrime(number) ? 'yes' : 'no';
   return result;
 };
 
-const runPrime = () => showFile(runGame(isRuleOfGame, getQuestion, expectedAnswer));
+const RuleOfGame = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+const userName = conversationWithUser();
+showValueInConsole(RuleOfGame);
+
+const runPrimeRound = () => {
+  const minNumder = 1;
+  const maxNumder = 10;
+  const number = generateRandomeNumber(minNumder, maxNumder);
+  const question = number;
+  showValueInConsole(question);
+  const PlayerAnswer = getAnswer();
+  const expectedAnswer = getAnswerPrimeOrNo(number);
+  const roundResult = checkAnswer(expectedAnswer, PlayerAnswer);
+  const roundAnswer = getRoundAnswer(roundResult, userName, PlayerAnswer, expectedAnswer);
+  showValueInConsole(roundAnswer);
+  return roundResult;
+};
+
+const resultGame = runGame(runPrimeRound);
+const runPrime = () => {
+  if (resultGame === true) {
+    showValueInConsole(`Congratulations, ${userName}!`);
+  }
+};
 
 export default runPrime;
-export {
-  isRuleOfGame, getQuestion, expectedAnswer,
-};

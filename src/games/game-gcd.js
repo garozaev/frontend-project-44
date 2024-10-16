@@ -1,7 +1,12 @@
 import runGame from '../index.js';
-import { getRandomeNumber, showFile } from '../utils.js';
-
-const isRuleOfGame = 'Find the greatest common divisor of given numbers.';
+import {
+  conversationWithUser,
+  generateRandomeNumber,
+  showValueInConsole,
+  getAnswer,
+  checkAnswer,
+  getRoundAnswer,
+} from '../utils.js';
 
 const getGcd = (number1, number2) => {
   let x = number1;
@@ -22,23 +27,29 @@ const getGcd = (number1, number2) => {
   return x;
 };
 
-const isStartNumder = 1;
-const isFinishNumder = 20;
-let isNumber1;
-let isNumber2;
+const RuleOfGame = 'Find the greatest common divisor of given numbers.';
+const userName = conversationWithUser();
+showValueInConsole(RuleOfGame);
 
-const getQuestion = () => {
-  isNumber1 = getRandomeNumber(isStartNumder, isFinishNumder);
-  isNumber2 = getRandomeNumber(isStartNumder, isFinishNumder);
-  const isQuestion = `${isNumber1} ${isNumber2}`;
-  return isQuestion;
+const runGcdRound = () => {
+  const minNumder = 1;
+  const maxhNumder = 10;
+  const num1 = generateRandomeNumber(minNumder, maxhNumder);
+  const num2 = generateRandomeNumber(minNumder, maxhNumder);
+  const question = `${num1} ${num2}`;
+  showValueInConsole(question);
+  const PlayerAnswer = getAnswer();
+  const expectedAnswer = getGcd(num1, num2).toString();
+  const roundResult = checkAnswer(expectedAnswer, PlayerAnswer);
+  const roundAnswer = getRoundAnswer(roundResult, userName, PlayerAnswer, expectedAnswer);
+  showValueInConsole(roundAnswer);
+  return roundResult;
 };
-
-const expectedAnswer = () => getGcd(isNumber1, isNumber2).toString();
-
-const runGcd = () => showFile(runGame(isRuleOfGame, getQuestion, expectedAnswer));
+const resultGame = runGame(runGcdRound);
+const runGcd = () => {
+  if (resultGame === true) {
+    showValueInConsole(`Congratulations, ${userName}!`);
+  }
+};
 
 export default runGcd;
-export {
-  isRuleOfGame, getQuestion, expectedAnswer,
-};

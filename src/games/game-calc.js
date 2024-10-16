@@ -1,46 +1,60 @@
 import runGame from '../index.js';
-import { getRandomeNumber, showFile } from '../utils.js';
+import {
+  conversationWithUser,
+  generateRandomeNumber,
+  showValueInConsole,
+  getAnswer,
+  checkAnswer,
+  getRoundAnswer,
+} from '../utils.js';
 
-const isRuleOfGame = 'What is the result of the expression?';
-
-const getSing = () => {
-  const isMinIndex = 0;
-  const isMaxIndex = 2;
-  const index = getRandomeNumber(isMinIndex, isMaxIndex) - 1;
-  const singsAr = ['-', '+', '*'];
-  const sing = singsAr.at(index);
-  return sing;
+const getExpressionSing = () => {
+  const firstIndex = 0;
+  const secondIndex = 2;
+  const index = generateRandomeNumber(firstIndex, secondIndex) - 1;
+  const singsArray = ['-', '+', '*'];
+  const getSing = singsArray.at(index);
+  return getSing;
 };
 
 const calcXpression = (number1, sing, number2) => {
-  let x;
+  let result;
   switch (sing) {
-    case '-': x = number1 - number2;
-      return x;
-    case '+': x = number1 + number2;
-      return x;
-    case '*': x = number1 * number2;
-      return x;
+    case '-': result = number1 - number2;
+      return result;
+    case '+': result = number1 + number2;
+      return result;
+    case '*': result = number1 * number2;
+      return result;
     default: return 'err';
   }
 };
 
-const isStartNumder = 1;
-const isFinishNumder = 20;
-let isNum1;
-let isNum2;
-let isSing;
+const RuleOfGame = 'What is the result of the expression?';
+const userName = conversationWithUser();
+showValueInConsole(RuleOfGame);
 
-const getQuestion = () => {
-  isNum1 = getRandomeNumber(isStartNumder, isFinishNumder);
-  isNum2 = getRandomeNumber(isStartNumder, isFinishNumder);
-  isSing = getSing();
-  const isQuestion = `${isNum1} ${isSing} ${isNum2}`;
-  return isQuestion;
+const runCalcRound = () => {
+  const minNumder = 1;
+  const maxhNumder = 4;
+  const num1 = generateRandomeNumber(minNumder, maxhNumder);
+  const num2 = generateRandomeNumber(minNumder, maxhNumder);
+  const sing = getExpressionSing();
+  const question = `${num1} ${sing} ${num2}`;
+  showValueInConsole(question);
+  const PlayerAnswer = getAnswer();
+  const expectedAnswer = calcXpression(num1, sing, num2).toString();
+  const roundResult = checkAnswer(expectedAnswer, PlayerAnswer);
+  const roundAnswer = getRoundAnswer(roundResult, userName, PlayerAnswer, expectedAnswer);
+  showValueInConsole(roundAnswer);
+  return roundResult;
 };
 
-const expectedAnswer = () => calcXpression(isNum1, isSing, isNum2).toString();
-
-const runCalc = () => showFile(runGame(isRuleOfGame, getQuestion, expectedAnswer));
+const resultGame = runGame(runCalcRound);
+const runCalc = () => {
+  if (resultGame === true) {
+    showValueInConsole(`Congratulations, ${userName}!`);
+  }
+};
 
 export default runCalc;
