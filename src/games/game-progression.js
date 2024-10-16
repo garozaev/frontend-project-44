@@ -6,6 +6,7 @@ import {
   getAnswer,
   checkAnswer,
   getRoundAnswer,
+  showQuestion,
 } from '../utils.js';
 
 const getProgressionRow = (difference) => {
@@ -14,25 +15,25 @@ const getProgressionRow = (difference) => {
   const rowLength = 10;
   const minHideIndex = 0;
   const maxHideIndex = rowLength - 1;
-  const numberStart = generateRandomeNumber(minNumberForStart, maxNumberForStart);
-  const indexGetlost = generateRandomeNumber(minHideIndex, maxHideIndex) - 1;
-  let number = numberStart;
-  let getlostNumber;
+  const firstNumberInProgression = generateRandomeNumber(minNumberForStart, maxNumberForStart);
+  const hideIndex = generateRandomeNumber(minHideIndex, maxHideIndex) - 1;
+  let number = firstNumberInProgression;
+  let hideNumber;
   const numbers = [];
   const result = [];
   for (let i = 0; i < rowLength; i += 1) {
-    if (i === indexGetlost) {
-      getlostNumber = number + difference;
+    if (i === hideIndex) {
+      hideNumber = number + difference;
       number = '..';
       numbers.push(number);
-      number = getlostNumber;
+      number = hideNumber;
     } else {
       number += difference;
       numbers.push(number);
     }
   }
   result.push(numbers);
-  result.push(getlostNumber);
+  result.push(hideNumber);
   return result;
 };
 
@@ -41,12 +42,12 @@ const userName = conversationWithUser();
 showValueInConsole(RuleOfGame);
 
 const runProgressionRound = () => {
-  const startNumderForStep = 1;
-  const endNumderForStep = 3;
-  const progressionStep = generateRandomeNumber(startNumderForStep, endNumderForStep);
+  const minNumderForStep = 1;
+  const maxNumderForStep = 10;
+  const progressionStep = generateRandomeNumber(minNumderForStep, maxNumderForStep);
   const progression = getProgressionRow(progressionStep);
   const question = progression[0].join(' ');
-  showValueInConsole(question);
+  showQuestion(question);
   const PlayerAnswer = getAnswer();
   const expectedAnswer = progression[1].toString();
   const roundResult = checkAnswer(expectedAnswer, PlayerAnswer);

@@ -1,10 +1,10 @@
 const runGame = (game) => {
-  const isMaxRound = 3;
+  const roundCount = 3;
   let result;
-  for (let i = 0; i < isMaxRound; i += 1) {
+  for (let i = 0; i < roundCount; i += 1) {
     result = game();
     if (result !== true) {
-      i = isMaxRound;
+      i = roundCount;
     }
   }
   return result;

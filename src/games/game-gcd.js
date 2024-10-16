@@ -6,6 +6,7 @@ import {
   getAnswer,
   checkAnswer,
   getRoundAnswer,
+  showQuestion,
 } from '../utils.js';
 
 const getGcd = (number1, number2) => {
@@ -33,11 +34,11 @@ showValueInConsole(RuleOfGame);
 
 const runGcdRound = () => {
   const minNumder = 1;
-  const maxhNumder = 10;
+  const maxhNumder = 20;
   const num1 = generateRandomeNumber(minNumder, maxhNumder);
   const num2 = generateRandomeNumber(minNumder, maxhNumder);
   const question = `${num1} ${num2}`;
-  showValueInConsole(question);
+  showQuestion(question);
   const PlayerAnswer = getAnswer();
   const expectedAnswer = getGcd(num1, num2).toString();
   const roundResult = checkAnswer(expectedAnswer, PlayerAnswer);

@@ -6,6 +6,7 @@ import {
   getAnswer,
   checkAnswer,
   getRoundAnswer,
+  showQuestion,
 } from '../utils.js';
 
 const isPrime = (number) => {
@@ -36,10 +37,10 @@ showValueInConsole(RuleOfGame);
 
 const runPrimeRound = () => {
   const minNumder = 1;
-  const maxNumder = 10;
+  const maxNumder = 20;
   const number = generateRandomeNumber(minNumder, maxNumder);
   const question = number;
-  showValueInConsole(question);
+  showQuestion(question);
   const PlayerAnswer = getAnswer();
   const expectedAnswer = getAnswerPrimeOrNo(number);
   const roundResult = checkAnswer(expectedAnswer, PlayerAnswer);

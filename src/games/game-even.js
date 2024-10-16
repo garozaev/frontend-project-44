@@ -6,6 +6,7 @@ import {
   getAnswer,
   checkAnswer,
   getRoundAnswer,
+  showQuestion,
 } from '../utils.js';
 
 const isEven = (number) => number % 2 === 0;
@@ -24,7 +25,7 @@ const runEvenRound = () => {
   const maxNumder = 20;
   const number = generateRandomeNumber(minNumder, maxNumder);
   const question = number;
-  showValueInConsole(question);
+  showQuestion(question);
   const PlayerAnswer = getAnswer();
   const expectedAnswer = getAnswerIsEvenOrNo(number);
   const roundResult = checkAnswer(expectedAnswer, PlayerAnswer);

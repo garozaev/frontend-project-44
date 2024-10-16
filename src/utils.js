@@ -6,8 +6,8 @@ const generateRandomeNumber = (min, max) => {
 };
 
 const conversationWithUser = () => {
-  const greetName = readlineSync.question('Welcome to the Brain Games!\nMay I have your name? ');
-  const userName = greetName;
+  const greetUser = readlineSync.question('Welcome to the Brain Games!\nMay I have your name? ');
+  const userName = greetUser;
   const hiUser = `Hello, ${userName}!`;
   console.log(hiUser);
   return userName;
@@ -15,11 +15,15 @@ const conversationWithUser = () => {
 
 const showValueInConsole = (file) => console.log(file);
 
+const showQuestion = (question) => showValueInConsole(`Question: ${question}`);
+
 const getAnswer = () => readlineSync.question('Yuor answer: ');
 
 const checkAnswer = (check, response) => check === response;
 
-const getRoundAnswer = (answer, name, response, check) => (answer ? 'Correct!' : `'${response}' is wrong answer ;(. Correct answer was '${check}'.\nLet's try again, ${name}!`);
+const getRoundAnswer = (answer, name, response, check) => (
+  answer ? 'Correct!'
+    : `'${response}' is wrong answer ;(. Correct answer was '${check}'.\nLet's try again, ${name}!`);
 
 export {
   conversationWithUser,
@@ -28,4 +32,5 @@ export {
   getAnswer,
   checkAnswer,
   getRoundAnswer,
+  showQuestion,
 };

@@ -6,6 +6,7 @@ import {
   getAnswer,
   checkAnswer,
   getRoundAnswer,
+  showQuestion,
 } from '../utils.js';
 
 const getExpressionSing = () => {
@@ -36,12 +37,12 @@ showValueInConsole(RuleOfGame);
 
 const runCalcRound = () => {
   const minNumder = 1;
-  const maxhNumder = 4;
+  const maxhNumder = 20;
   const num1 = generateRandomeNumber(minNumder, maxhNumder);
   const num2 = generateRandomeNumber(minNumder, maxhNumder);
   const sing = getExpressionSing();
   const question = `${num1} ${sing} ${num2}`;
-  showValueInConsole(question);
+  showQuestion(question);
   const PlayerAnswer = getAnswer();
   const expectedAnswer = calcXpression(num1, sing, num2).toString();
   const roundResult = checkAnswer(expectedAnswer, PlayerAnswer);
