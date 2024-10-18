@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "type": "module",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/garozaev/frontend-project-44/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/garozaev/frontend-project-44/actions)",
+  "description": "The set of games to test basic arithmetic knowledge",
   "bin": {
     "brain-games": "bin/brain-games.js",
     "brain-even": "bin/brain-even.js",
@@ -24,8 +24,6 @@
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.9.0",
-    "eslint-plugin-react": "^7.35.0",
-    "eslint-plugin-react-hooks": "^4.6.2",
     "globals": "^15.9.0"
   },
   "dependencies": {

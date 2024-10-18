@@ -17,7 +17,7 @@ const showValueInConsole = (file) => console.log(file);
 
 const showQuestion = (question) => showValueInConsole(`Question: ${question}`);
 
-const getAnswer = () => readlineSync.question('Yuor answer: ');
+const getAnswer = () => readlineSync.question('Your answer: ');
 
 const checkAnswer = (check, response) => check === response;
 
