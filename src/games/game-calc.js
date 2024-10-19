@@ -51,9 +51,9 @@ const runCalcRound = () => {
   return roundResult;
 };
 
-const resultGame = runGame(runCalcRound);
 const runCalc = () => {
-  if (resultGame === true) {
+  const gameRult = runGame(runCalcRound);
+  if (gameRult === true) {
     showValueInConsole(`Congratulations, ${userName}!`);
   }
 };

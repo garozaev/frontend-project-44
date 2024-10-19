@@ -13,7 +13,7 @@ const conversationWithUser = () => {
   return userName;
 };
 
-const showValueInConsole = (file) => console.log(file);
+const showValueInConsole = (value) => console.log(value);
 
 const showQuestion = (question) => showValueInConsole(`Question: ${question}`);
 
