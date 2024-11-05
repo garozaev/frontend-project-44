@@ -1,13 +1,9 @@
 import runGame from '../index.js';
-import {
-  conversationWithUser,
-  generateRandomeNumber,
-  showValueInConsole,
-  getAnswer,
-  checkAnswer,
-  getRoundAnswer,
-  showQuestion,
-} from '../utils.js';
+import generateRandomeNumber from '../utils.js';
+
+const description = 'Answer "yes" if the number is even, otherwise answer "no".';
+const minNumder = 1;
+const maxNumder = 20;
 
 const isEven = (number) => number % 2 === 0;
 
@@ -16,29 +12,13 @@ const getAnswerIsEvenOrNo = (number) => {
   return result;
 };
 
-const RuleOfGame = 'Answer "yes" if the number is even, otherwise answer "no".';
-const userName = conversationWithUser();
-showValueInConsole(RuleOfGame);
-
-const runEvenRound = () => {
-  const minNumder = 1;
-  const maxNumder = 20;
+const generateRound = () => {
   const number = generateRandomeNumber(minNumder, maxNumder);
   const question = number;
-  showQuestion(question);
-  const PlayerAnswer = getAnswer();
-  const expectedAnswer = getAnswerIsEvenOrNo(number);
-  const roundResult = checkAnswer(expectedAnswer, PlayerAnswer);
-  const roundAnswer = getRoundAnswer(roundResult, userName, PlayerAnswer, expectedAnswer);
-  showValueInConsole(roundAnswer);
-  return roundResult;
+  const correctAnswer = getAnswerIsEvenOrNo(number);
+  return [question, correctAnswer];
 };
 
-const resultGame = runGame(runEvenRound);
-const runEven = () => {
-  if (resultGame === true) {
-    showValueInConsole(`Congratulations, ${userName}!`);
-  }
-};
+const runEven = () => runGame(description, generateRound);
 
 export default runEven;

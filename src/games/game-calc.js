@@ -1,19 +1,15 @@
 import runGame from '../index.js';
-import {
-  conversationWithUser,
-  generateRandomeNumber,
-  showValueInConsole,
-  getAnswer,
-  checkAnswer,
-  getRoundAnswer,
-  showQuestion,
-} from '../utils.js';
+import generateRandomeNumber from '../utils.js';
+
+const description = 'What is the result of the expression?';
+const singsArray = ['-', '+', '*'];
+const firstIndex = 0;
+const secondIndex = 2;
+const minNumder = 1;
+const maxhNumder = 20;
 
 const getExpressionSing = () => {
-  const firstIndex = 0;
-  const secondIndex = 2;
   const index = generateRandomeNumber(firstIndex, secondIndex) - 1;
-  const singsArray = ['-', '+', '*'];
   const getSing = singsArray.at(index);
   return getSing;
 };
@@ -31,31 +27,15 @@ const calcXpression = (number1, sing, number2) => {
   }
 };
 
-const RuleOfGame = 'What is the result of the expression?';
-const userName = conversationWithUser();
-showValueInConsole(RuleOfGame);
-
-const runCalcRound = () => {
-  const minNumder = 1;
-  const maxhNumder = 20;
+const generateRound = () => {
   const num1 = generateRandomeNumber(minNumder, maxhNumder);
   const num2 = generateRandomeNumber(minNumder, maxhNumder);
   const sing = getExpressionSing();
   const question = `${num1} ${sing} ${num2}`;
-  showQuestion(question);
-  const PlayerAnswer = getAnswer();
-  const expectedAnswer = calcXpression(num1, sing, num2).toString();
-  const roundResult = checkAnswer(expectedAnswer, PlayerAnswer);
-  const roundAnswer = getRoundAnswer(roundResult, userName, PlayerAnswer, expectedAnswer);
-  showValueInConsole(roundAnswer);
-  return roundResult;
+  const correctAnswer = calcXpression(num1, sing, num2).toString();
+  return [question, correctAnswer];
 };
 
-const runCalc = () => {
-  const gameRult = runGame(runCalcRound);
-  if (gameRult === true) {
-    showValueInConsole(`Congratulations, ${userName}!`);
-  }
-};
+const runCalc = () => runGame(description, generateRound);
 
 export default runCalc;

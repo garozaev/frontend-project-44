@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import conversationWithUser from '../src/cli.js';
+import greetAndGetUserName from '../src/cli.js';
 
-conversationWithUser();
+greetAndGetUserName();
