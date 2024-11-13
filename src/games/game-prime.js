@@ -1,9 +1,9 @@
 import runGame from '../index.js';
-import generateRandomeNumber from '../utils.js';
+import { generateRandomeNumber } from '../utils.js';
 
 const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-const minNumder = 1;
-const maxNumder = 20;
+const min = 1;
+const max = 20;
 
 const isPrime = (number) => {
   let result;
@@ -22,15 +22,10 @@ const isPrime = (number) => {
   return result;
 };
 
-const getAnswerPrimeOrNo = (number) => {
-  const result = isPrime(number) ? 'yes' : 'no';
-  return result;
-};
-
 const generateRound = () => {
-  const number = generateRandomeNumber(minNumder, maxNumder);
-  const question = number;
-  const correctAnswer = getAnswerPrimeOrNo(number);
+  const number = generateRandomeNumber(min, max);
+  const question = String(number);
+  const correctAnswer = isPrime(number) ? 'yes' : 'no';
   return [question, correctAnswer];
 };
 

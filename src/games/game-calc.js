@@ -1,38 +1,30 @@
 import runGame from '../index.js';
-import generateRandomeNumber from '../utils.js';
+import { generateRandomeNumber, getRandomeIndexFromCollection } from '../utils.js';
 
 const description = 'What is the result of the expression?';
-const singsArray = ['-', '+', '*'];
-const firstIndex = 0;
-const secondIndex = 2;
-const minNumder = 1;
-const maxhNumder = 20;
+const sings = ['-', '+', '*'];
+const min = 1;
+const max = 20;
 
-const getExpressionSing = () => {
-  const index = generateRandomeNumber(firstIndex, secondIndex) - 1;
-  const getSing = singsArray.at(index);
-  return getSing;
-};
-
-const calcXpression = (number1, sing, number2) => {
-  let result;
+const calcExpression = (number1, sing, number2) => {
   switch (sing) {
-    case '-': result = number1 - number2;
-      return result;
-    case '+': result = number1 + number2;
-      return result;
-    case '*': result = number1 * number2;
-      return result;
-    default: return 'err';
+    case '-':
+      return number1 - number2;
+    case '+':
+      return number1 + number2;
+    case '*':
+      return number1 * number2;
+    default: throw new Error(`Unknow values state: '${number1}' or '${sing}' or '${number2}'!`);
   }
 };
 
 const generateRound = () => {
-  const num1 = generateRandomeNumber(minNumder, maxhNumder);
-  const num2 = generateRandomeNumber(minNumder, maxhNumder);
-  const sing = getExpressionSing();
+  const num1 = generateRandomeNumber(min, max);
+  const num2 = generateRandomeNumber(min, max);
+  const randomeIndex = getRandomeIndexFromCollection(sings);
+  const sing = sings[randomeIndex];
   const question = `${num1} ${sing} ${num2}`;
-  const correctAnswer = calcXpression(num1, sing, num2).toString();
+  const correctAnswer = String(calcExpression(num1, sing, num2));
   return [question, correctAnswer];
 };
 

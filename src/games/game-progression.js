@@ -1,43 +1,31 @@
 import runGame from '../index.js';
-import generateRandomeNumber from '../utils.js';
+import { generateRandomeNumber, getRandomeIndexFromCollection } from '../utils.js';
 
 const description = 'What number is missing in the progression?';
-const minNumberForStart = 0;
-const maxNumberForStart = 100;
-const rowLength = 10;
-const minHideIndex = 0;
-const maxHideIndex = rowLength - 1;
-const minNumderForStep = 1;
-const maxNumderForStep = 10;
+const minStartNunber = 0;
+const maxStartNunber = 100;
+const progressionLength = 10;
+const minStep = 1;
+const maxStep = 10;
 
-const getProgressionRow = (difference) => {
-  const firstNumberInProgression = generateRandomeNumber(minNumberForStart, maxNumberForStart);
-  const hideIndex = generateRandomeNumber(minHideIndex, maxHideIndex);
-  let number = firstNumberInProgression;
-  let hideNumber;
+const getArethmeticProgression = (beginNunber, step, length) => {
+  let number = beginNunber;
   const numbers = [];
-  const result = [];
-  for (let i = 0; i < rowLength; i += 1) {
-    if (i === hideIndex) {
-      hideNumber = number + difference;
-      number = '..';
-      numbers.push(number);
-      number = hideNumber;
-    } else {
-      number += difference;
-      numbers.push(number);
-    }
+  for (let i = 0; i < length; i += 1) {
+    number += step;
+    numbers.push(number);
   }
-  result.push(numbers);
-  result.push(hideNumber);
-  return result;
+  return numbers;
 };
 
 const generateRound = () => {
-  const progressionStep = generateRandomeNumber(minNumderForStep, maxNumderForStep);
-  const progression = getProgressionRow(progressionStep);
-  const question = progression[0].join(' ');
-  const correctAnswer = progression[1].toString();
+  const beginNunber = generateRandomeNumber(minStartNunber, maxStartNunber);
+  const step = generateRandomeNumber(minStep, maxStep);
+  const progression = getArethmeticProgression(beginNunber, step, progressionLength);
+  const randomeIndex = getRandomeIndexFromCollection(progression);
+  const correctAnswer = String(progression[randomeIndex]);
+  progression[randomeIndex] = '..';
+  const question = progression.join(' ');
   return [question, correctAnswer];
 };
 

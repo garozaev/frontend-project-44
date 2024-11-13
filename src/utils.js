@@ -3,4 +3,10 @@ const generateRandomeNumber = (min, max) => {
   return Math.floor(random);
 };
 
-export default generateRandomeNumber;
+const getRandomeIndexFromCollection = (coll) => {
+  const min = 0;
+  const max = coll.length - 1;
+  return generateRandomeNumber(min, max);
+};
+
+export { generateRandomeNumber, getRandomeIndexFromCollection };
