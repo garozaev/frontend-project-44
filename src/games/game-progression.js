@@ -1,28 +1,27 @@
 import runGame from '../index.js';
-import { generateRandomeNumber, getRandomeIndexFromCollection } from '../utils.js';
+import { generateRandomeNumber, getRandomeIndex } from '../utils.js';
 
 const description = 'What number is missing in the progression?';
-const minStartNunber = 0;
-const maxStartNunber = 100;
-const progressionLength = 10;
+const minStart = 0;
+const maxStart = 100;
+const length = 10;
 const minStep = 1;
 const maxStep = 10;
 
-const getArethmeticProgression = (beginNunber, step, length) => {
-  let number = beginNunber;
-  const numbers = [];
-  for (let i = 0; i < length; i += 1) {
-    number += step;
-    numbers.push(number);
+const getArethmeticProgression = (progressionStart, progressionStep, progressionLength) => {
+  const progression = [progressionStart];
+  for (let i = 0; i < progressionLength; i += 1) {
+    progression[i] += progressionStep;
+    progression.push(progression[i]);
   }
-  return numbers;
+  return progression;
 };
 
 const generateRound = () => {
-  const beginNunber = generateRandomeNumber(minStartNunber, maxStartNunber);
+  const begin = generateRandomeNumber(minStart, maxStart);
   const step = generateRandomeNumber(minStep, maxStep);
-  const progression = getArethmeticProgression(beginNunber, step, progressionLength);
-  const randomeIndex = getRandomeIndexFromCollection(progression);
+  const progression = getArethmeticProgression(begin, step, length);
+  const randomeIndex = getRandomeIndex(progression);
   const correctAnswer = String(progression[randomeIndex]);
   progression[randomeIndex] = '..';
   const question = progression.join(' ');

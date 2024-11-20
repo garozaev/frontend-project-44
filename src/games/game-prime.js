@@ -6,7 +6,6 @@ const min = 1;
 const max = 20;
 
 const isPrime = (number) => {
-  let result;
   if (number <= 1) {
     return false;
   }
@@ -17,9 +16,8 @@ const isPrime = (number) => {
     if (number % i === 0) {
       return false;
     }
-    result = true;
   }
-  return result;
+  return true;
 };
 
 const generateRound = () => {

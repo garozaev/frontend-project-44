@@ -1,5 +1,5 @@
 import runGame from '../index.js';
-import { generateRandomeNumber, getRandomeIndexFromCollection } from '../utils.js';
+import { generateRandomeNumber, getRandomeIndex } from '../utils.js';
 
 const description = 'What is the result of the expression?';
 const sings = ['-', '+', '*'];
@@ -21,7 +21,7 @@ const calcExpression = (number1, sing, number2) => {
 const generateRound = () => {
   const num1 = generateRandomeNumber(min, max);
   const num2 = generateRandomeNumber(min, max);
-  const randomeIndex = getRandomeIndexFromCollection(sings);
+  const randomeIndex = getRandomeIndex(sings);
   const sing = sings[randomeIndex];
   const question = `${num1} ${sing} ${num2}`;
   const correctAnswer = String(calcExpression(num1, sing, num2));
