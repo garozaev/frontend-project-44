@@ -10,9 +10,9 @@ const maxStep = 10;
 
 const getArethmeticProgression = (progressionStart, progressionStep, progressionLength) => {
   const progression = [progressionStart];
-  for (let i = 0; i < progressionLength; i += 1) {
-    progression[i] += progressionStep;
-    progression.push(progression[i]);
+  for (let i = 0; i + 1 < progressionLength; i += 1) {
+    const current = progression[i] + progressionStep;
+    progression.push(current);
   }
   return progression;
 };
